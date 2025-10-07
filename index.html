@@ -1,85 +1,242 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Chengappa Thumisi — Wellness Entrepreneur</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>90‑Day Fitness Challenge — Timeline & Follow‑up</title>
   <style>
-    /* Simple, minimal styles */
-    body{font-family:Arial,Helvetica,sans-serif;margin:0;color:#222;background:#f7f7f7}
-    .wrap{max-width:800px;margin:40px auto;padding:20px;background:#fff;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,.06)}
-    header{display:flex;justify-content:space-between;align-items:center}
-    h1{margin:0;font-size:24px}
-    p.lead{color:#555}
-    nav a{margin-left:12px;color:#0b66c3;text-decoration:none;font-size:14px}
-    section{margin-top:20px}
-    .two{display:flex;gap:20px;flex-wrap:wrap}
-    .card{flex:1;min-width:220px;padding:12px;border-radius:6px;background:#fafafa;border:1px solid #eee}
-    form input,form textarea{width:100%;padding:8px;margin-top:6px;border:1px solid #ddd;border-radius:4px}
-    form button{margin-top:10px;padding:10px 14px;border:0;background:#0b66c3;color:#fff;border-radius:6px;cursor:pointer}
-    footer{text-align:center;color:#888;font-size:13px;margin-top:24px}
-    @media(max-width:600px){.two{flex-direction:column}}
+    :root{--bg:#f6f8fb;--card:#ffffff;--muted:#6b7280;--accent:#2563eb}
+    body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background:var(--bg); margin:0; padding:24px; color:#0f172a}
+    .container{max-width:1000px;margin:0 auto}
+    header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+    h1{font-size:20px;margin:0}
+    .meta{color:var(--muted);font-size:13px}
+    .card{background:var(--card);border-radius:12px;padding:14px;box-shadow:0 6px 18px rgba(2,6,23,0.06);margin-bottom:14px}
+    .controls{display:flex;gap:8px;flex-wrap:wrap}
+    button{background:var(--accent);color:white;border:none;padding:8px 10px;border-radius:8px;cursor:pointer}
+    button.secondary{background:#e6eefc;color:var(--accent);border:1px solid rgba(37,99,235,0.12)}
+    .timeline{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}
+    .week{border-radius:10px;padding:10px;border:1px solid #eef2ff;background:linear-gradient(180deg,#fff,#fbfdff)}
+    .week h3{margin:0 0 8px 0;font-size:14px}
+    .days{display:flex;flex-direction:column;gap:6px}
+    label.day{display:flex;align-items:center;gap:8px;font-size:13px;color:#0b1220}
+    .muted{color:var(--muted)}
+    .progress-wrap{display:flex;align-items:center;gap:10px;margin-top:8px}
+    .progress{height:10px;background:#e6eefc;border-radius:999px;flex:1;overflow:hidden}
+    .progress > i{display:block;height:100%;background:var(--accent);width:0%}
+    textarea{width:100%;min-height:60px;border-radius:8px;padding:8px;border:1px solid #e6eefc}
+    .footer{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
+    .small{font-size:12px;color:var(--muted)}
+    @media (max-width:640px){header{flex-direction:column;align-items:flex-start;gap:8px}}
   </style>
 </head>
 <body>
-  <div class="wrap">
+  <div class="container">
     <header>
       <div>
-        <h1>Chengappa Thumisi</h1>
-        <div class="lead">Wellness Entrepreneur • Wellness Coach • Digital Content Creator</div>
+        <h1>90‑Day Fitness Challenge — Timeline & Follow‑up</h1>
+        <div class="meta">Timeline: <span id="range-text"></span> — 05-10-2025 → 02-01-2026</div>
       </div>
-      <nav>
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#contact">Contact</a>
-      </nav>
+      <div class="controls">
+        <button id="save-all">Save progress</button>
+        <button class="secondary" id="reset-all">Reset</button>
+        <button class="secondary" id="export-csv">Export CSV</button>
+      </div>
     </header>
 
-    <section id="about">
-      <h2>About me</h2>
-      <p>Hello — I’m <strong>Your Name</strong>. I help busy people build simple, sustainable habits for better health and balance. I combine practical coaching, mindfulness techniques, and easy-to-follow nutrition tips to create programs that fit real life.</p>
-    </section>
-
-    <section id="services">
-      <h2>What I do</h2>
-      <div class="two">
-        <div class="card">
-          <h3>1:1 Coaching</h3>
-          <p>Personalized plans and weekly check-ins to reach your wellness goals.</p>
-        </div>
-        <div class="card">
-          <h3>Workshops</h3>
-          <p>Interactive group sessions on stress management, sleep, and mindful eating.</p>
-        </div>
-        <div class="card">
-          <h3>Online Courses</h3>
-          <p>Self-paced courses with practical lessons and simple daily routines.</p>
-        </div>
+    <section class="card">
+      <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+        <div class="small"><strong>Total days:</strong> <span id="total-days">0</span></div>
+        <div class="small"><strong>Completed:</strong> <span id="completed-days">0</span></div>
+        <div class="small"><strong>Progress:</strong> <span id="progress-percent">0%</span></div>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress" aria-hidden><i id="progress-bar"></i></div>
       </div>
     </section>
 
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>Want to work together or have a question? Send a message:</p>
-      <form action="mailto:you@example.com" method="post" enctype="text/plain">
-        <label>Name
-          <input type="text" name="name" required placeholder="Your name">
-        </label>
-        <label>Email
-          <input type="email" name="email" required placeholder="you@example.com">
-        </label>
-        <label>Message
-          <textarea name="message" rows="4" required placeholder="How can I help?"></textarea>
-        </label>
-        <button type="submit">Send</button>
-      </form>
+    <section id="timeline" class="timeline"></section>
+
+    <section class="card">
+      <h3 style="margin-top:0">Notes & Weekly Follow‑Up</h3>
+      <div id="notes-wrapper"></div>
     </section>
 
-    <footer>
-      © <span id="year"></span> Your Name — Crafted simply.
-    </footer>
+    <div class="footer small card" style="display:flex;justify-content:space-between;align-items:center">
+      <div>Auto‑saves to your browser. Use <strong>Export CSV</strong> to download progress.</div>
+      <div><small>Start date: 05-10-2025 | End date: 02-01-2026</small></div>
+    </div>
   </div>
 
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script>
+    // --- configuration (dates provided by user) ---
+    const START_INPUT = '05-10-2025'; // dd-mm-yyyy
+    const END_INPUT   = '02-01-2026'; // dd-mm-yyyy
+
+    function parseDMY(dmy){
+      const [d,m,y] = dmy.split('-').map(Number);
+      return new Date(y, m-1, d);
+    }
+
+    const startDate = parseDMY(START_INPUT);
+    const endDate   = parseDMY(END_INPUT);
+
+    // generate all dates inclusive
+    function dateRange(start, end){
+      const arr = [];
+      const d = new Date(start);
+      while(d <= end){ arr.push(new Date(d)); d.setDate(d.getDate()+1); }
+      return arr;
+    }
+
+    const allDates = dateRange(startDate, endDate);
+    const totalDays = allDates.length;
+    document.getElementById('total-days').textContent = totalDays;
+    document.getElementById('range-text').textContent = formatDate(startDate) + ' → ' + formatDate(endDate);
+
+    // helpers
+    function formatDate(dt){
+      return dt.toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'});
+    }
+    function isoDate(dt){ return dt.toISOString().slice(0,10); }
+
+    // Build UI grouped by weeks (7-day groups starting from startDate)
+    const timeline = document.getElementById('timeline');
+    const notesWrapper = document.getElementById('notes-wrapper');
+
+    // Load saved state
+    const STORAGE_KEY = 'fitness90_progress_05102025_02012026';
+    let saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+
+    // create weeks
+    const weeks = [];
+    for(let i=0;i<allDates.length;i+=7){
+      weeks.push(allDates.slice(i,i+7));
+    }
+
+    // render weeks
+    weeks.forEach((weekDates, widx)=>{
+      const weekEl = document.createElement('div'); weekEl.className='week card-like';
+      const weekStart = formatDate(weekDates[0]);
+      const weekEnd = formatDate(weekDates[weekDates.length-1]);
+      weekEl.innerHTML = `<h3>Week ${widx+1} — <span class="muted">${weekStart} — ${weekEnd}</span></h3>`;
+
+      const daysWrap = document.createElement('div'); daysWrap.className='days';
+      weekDates.forEach(d=>{
+        const id = 'd-'+isoDate(d);
+        const checked = saved[id] ? 'checked' : '';
+        const label = document.createElement('label'); label.className='day';
+        label.innerHTML = `<input type=checkbox id="${id}" ${checked}> <span>${d.toLocaleDateString(undefined,{weekday:'short',day:'numeric',month:'short'})}</span>`;
+        daysWrap.appendChild(label);
+      });
+
+      // weekly note area
+      const noteId = 'note-week-'+widx;
+      const note = document.createElement('textarea'); note.placeholder = 'Weekly notes / follow-up plan...'; note.id = noteId;
+      note.value = saved[noteId] || '';
+
+      // week progress
+      const weekProgressWrap = document.createElement('div');
+      weekProgressWrap.style.marginTop='8px';
+      const weekProgressInner = document.createElement('div'); weekProgressInner.className='progress';
+      const weekProgressBar = document.createElement('i');
+      weekProgressInner.appendChild(weekProgressBar);
+      weekProgressWrap.appendChild(weekProgressInner);
+
+      weekEl.appendChild(daysWrap);
+      weekEl.appendChild(weekProgressWrap);
+      weekEl.appendChild(note);
+      timeline.appendChild(weekEl);
+
+      notesWrapper.appendChild(document.createElement('div'));
+
+      // attach listeners to checkboxes in this week
+      weekDates.forEach(d=>{
+        const id = 'd-'+isoDate(d);
+        const cb = document.getElementById(id);
+        cb?.addEventListener('change', ()=>{ if(cb.checked) saved[id]=true; else delete saved[id]; updateProgress(); saveToStorage(); updateWeekProgress(); });
+      });
+
+      // save note on input
+      note.addEventListener('input', ()=>{ saved[noteId] = note.value; saveToStorage(); });
+
+      function updateWeekProgress(){
+        const boxes = weekDates.map(d=>saved['d-'+isoDate(d)]?1:0);
+        const done = boxes.reduce((a,b)=>a+b,0);
+        const pct = Math.round((done/weekDates.length)*100);
+        weekProgressBar.style.width = pct+'%';
+      }
+      updateWeekProgress();
+    });
+
+    // update overall progress
+    function updateProgress(){
+      const completed = Object.keys(saved).filter(k=>k.startsWith('d-')).length;
+      document.getElementById('completed-days').textContent = completed;
+      const pct = Math.round((completed/totalDays)*100);
+      document.getElementById('progress-percent').textContent = pct + '%';
+      document.getElementById('progress-bar').style.width = pct + '%';
+    }
+    updateProgress();
+
+    // Save / reset / export
+    function saveToStorage(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(saved)); }
+
+    document.getElementById('save-all').addEventListener('click', ()=>{ saveToStorage(); alert('Progress saved to your browser.'); });
+    document.getElementById('reset-all').addEventListener('click', ()=>{ if(!confirm('Reset all progress?')) return; saved={}; localStorage.removeItem(STORAGE_KEY); location.reload(); });
+
+    function exportCSV(){
+      const rows = [['date','weekday','completed','note']];
+      allDates.forEach(d=>{
+        const id = 'd-'+isoDate(d);
+        const completed = saved[id] ? '1':'0';
+        rows.push([isoDate(d), d.toLocaleDateString(undefined,{weekday:'short'}), completed, '']);
+      });
+      // add weekly notes
+      weeks.forEach((weekDates,widx)=>{
+        const nid = 'note-week-'+widx;
+        rows.push(['','', '', '--- Week '+(widx+1)+' note ---']);
+        rows.push(['','', '', (saved[nid]||'')]);
+      });
+      const csv = rows.map(r=>r.map(c=>`"${String(c).replace(/"/g,'""') }"`).join(',')).join('\n');
+      const blob = new Blob([csv], {type:'text/csv'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href = url; a.download = 'fitness90_progress.csv'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+    }
+    document.getElementById('export-csv').addEventListener('click', exportCSV);
+
+    // initial checkbox listeners for already rendered checkboxes
+    document.querySelectorAll('input[type=checkbox]').forEach(cb=>{
+      cb.addEventListener('change', ()=>{
+        if(cb.checked) saved[cb.id]=true; else delete saved[cb.id]; updateProgress(); saveToStorage(); // update weekly bars
+        document.querySelectorAll('.week').forEach((wk, idx)=>{
+          const weekDates = weeks[idx];
+          const boxes = weekDates.map(d=>saved['d-'+isoDate(d)]?1:0);
+          const done = boxes.reduce((a,b)=>a+b,0);
+          const pct = Math.round((done/weekDates.length)*100);
+          const bar = wk.querySelector('.progress > i'); if(bar) bar.style.width = pct+'%';
+        });
+      });
+    });
+
+    // auto save periodically
+    setInterval(()=>{ saveToStorage(); }, 15000);
+
+    // ensure UI progress matches saved state at load
+    (function syncUI(){
+      document.querySelectorAll('input[type=checkbox]').forEach(cb=>{ if(saved[cb.id]) cb.checked=true; });
+      updateProgress();
+      document.querySelectorAll('.week').forEach((wk, idx)=>{
+        const weekDates = weeks[idx];
+        const boxes = weekDates.map(d=>saved['d-'+isoDate(d)]?1:0);
+        const done = boxes.reduce((a,b)=>a+b,0);
+        const pct = Math.round((done/weekDates.length)*100);
+        const bar = wk.querySelector('.progress > i'); if(bar) bar.style.width = pct+'%';
+      });
+      // fill notes
+      weeks.forEach((_, idx)=>{ const nid='note-week-'+idx; const el=document.getElementById(nid); if(el) el.value = saved[nid]||''; });
+    })();
+
+  </script>
 </body>
 </html>

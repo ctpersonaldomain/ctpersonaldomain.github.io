@@ -1,57 +1,58 @@
-
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>T. Chengappa</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Google Calendar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+
+        .calendar-container {
+            width: 90%;
+            max-width: 1000px;
+            background: #ffffff;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .calendar-container h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* Responsive Wrapper for Mobile */
+        .responsive-iframe {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            border: none;
+        }
+    </style>
 </head>
 <body>
 
-<h1>My Journey through years</h1>
-       <h2>2026 (39th Year)</h2>
-	<h3>September-2026</h3>
-  <ul>
-       <li> @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</a></li>
-       <li>@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</a></li>
-       
-</ul>
-	<h3>August-2026</h3>
-  <ul>
-       <li> @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</a></li>
-       <li>@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</a></li>
-       
-</ul>
-     <h2> 2025 (38th Year)</h2>
-  <ul>
-       <li>@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</a></li>
-       <li>@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</a></li>
-           
- 
-</ul>
-    <h2> 2024</h2>
-  <ul>
-      <li>@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</a></li>
-      <li>@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</a></li>
-      
-</ul>
-  <h2>2023</h2>
-  <ul>
-    
-  <li>@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</li>
-    <li>@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</li>
-
-</ul>
-<h2>2022</h2>
-  <ul>
-    <li>@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</li>
-    <li>@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</li>
-  
-   
-</ul>
-  <h2>2021</h2>
-  <ul>
-    <li>@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</li>
-	  <li>@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</li>
+    <div class="calendar-container">
+        <h2>Event Calendar</h2>
         
-</ul>
+        <!-- Replace the 'src' link below with your own Google Calendar Embed Link -->
+        <iframe 
+            class="responsive-iframe"
+            src="https://calendar.google.com/calendar/embed?mode=MONTH&amp;src=en.usa%23holiday%40group.v.calendar.google.com&amp;ctz=America%2FNew_York" 
+            style="border: 0" 
+            frameborder="0" 
+            scrolling="no">
+        </iframe>
+    </div>
 
 </body>
 </html>
